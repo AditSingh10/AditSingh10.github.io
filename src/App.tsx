@@ -209,6 +209,15 @@ function App() {
                 <div className="mt-4">
                   <PillList items={experience.tools} />
                 </div>
+                {experience.links ? (
+                  <div className="mt-4 flex flex-wrap gap-4">
+                    {experience.links.map((link) => (
+                      <ExternalLink key={link.href} href={link.href}>
+                        {link.label}
+                      </ExternalLink>
+                    ))}
+                  </div>
+                ) : null}
                 <ul className="mt-5 space-y-3 text-sm leading-6 text-soft">
                   {experience.bullets.map((bullet) => (
                     <li key={bullet} className="border-l border-line pl-4">

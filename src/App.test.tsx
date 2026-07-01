@@ -125,6 +125,34 @@ describe('portfolio shell', () => {
     )
   })
 
+  it('renders the added research and open-source experiences', () => {
+    render(<App />)
+
+    const experienceSection = screen.getByRole('region', { name: 'Experience' })
+
+    expect(
+      within(experienceSection).getByText('Open Source Contributor'),
+    ).toBeInTheDocument()
+    expect(
+      within(experienceSection).getByRole('link', { name: /PR #15399/i }),
+    ).toHaveAttribute('href', 'https://github.com/redis/redis/pull/15399')
+    expect(within(experienceSection).getByText(/CLUSTER NODES\/SLOTS/i)).toBeInTheDocument()
+
+    expect(
+      within(experienceSection).getByText('Software Development Researcher'),
+    ).toBeInTheDocument()
+    expect(
+      within(experienceSection).getByText(
+        /Santa Clara University School of Engineering/i,
+      ),
+    ).toBeInTheDocument()
+    expect(within(experienceSection).getByText(/WasteGenie/i)).toBeInTheDocument()
+    expect(within(experienceSection).getByText(/80%/i)).toBeInTheDocument()
+    expect(
+      within(experienceSection).getByText(/public school students/i),
+    ).toBeInTheDocument()
+  })
+
   it('renders personal interests without turning them into project content', () => {
     render(<App />)
 

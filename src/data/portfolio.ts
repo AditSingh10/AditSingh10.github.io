@@ -25,6 +25,7 @@ export type Experience = {
   dates: string
   tools: string[]
   bullets: string[]
+  links?: Link[]
 }
 
 export type SkillGroup = {
@@ -141,6 +142,23 @@ export const experiences: Experience[] = [
     ],
   },
   {
+    organization: 'Redis',
+    role: 'Open Source Contributor',
+    location: 'Remote',
+    dates: 'July 2026',
+    tools: ['Tcl', 'Redis Cluster', 'Test migration'],
+    bullets: [
+      'Submitted redis/redis PR #15399 migrating CLUSTER NODES/SLOTS topology coverage from the legacy cluster suite into the unit/cluster framework.',
+      'Replaced cluster_create_with_continuous_slots setup with start_cluster while preserving continuous and discontinuous slot-range assertions for CLUSTER NODES and CLUSTER SLOTS.',
+    ],
+    links: [
+      {
+        label: 'PR #15399',
+        href: 'https://github.com/redis/redis/pull/15399',
+      },
+    ],
+  },
+  {
     organization: 'University of Wisconsin - Madison',
     role: 'Machine Learning Researcher',
     location: 'Madison, WI',
@@ -169,6 +187,17 @@ export const experiences: Experience[] = [
       'Redesigned a legacy monolith into Spring Boot microservices, scaling log-processing throughput to 5B+ logs per day for a platform used by 200+ telecom customers.',
       'Reduced log ingestion latency by 35% with concurrent inputs, multithreading, and ring buffers while streaming 200k+ events per second to Kafka.',
       'Addressed 30+ CVEs and automated deployments with Docker, Kubernetes, and Jenkins, reducing release times by 40%.',
+    ],
+  },
+  {
+    organization: 'Santa Clara University School of Engineering',
+    role: 'Software Development Researcher',
+    location: 'Santa Clara, CA / Hybrid',
+    dates: 'May 2024 - July 2024',
+    tools: ['TypeScript', 'Next.js', 'PostgreSQL', 'Product analytics'],
+    bullets: [
+      'Built a TypeScript, Next.js, and PostgreSQL analytics platform for WasteGenie, an environmental education site used in clinical trials with public school students.',
+      'Analyzed engagement data across activities, posts, and user workflows to guide product changes that helped improve trial user engagement to 80%.',
     ],
   },
 ]

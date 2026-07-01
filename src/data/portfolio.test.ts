@@ -39,6 +39,67 @@ describe('portfolio data', () => {
     expect(projects[3].links).toEqual([])
   })
 
+  it('includes verified research and open-source experience entries', () => {
+    expect(
+      experiences.map((experience) => ({
+        organization: experience.organization,
+        role: experience.role,
+        dates: experience.dates,
+      })),
+    ).toEqual([
+      {
+        organization: 'Cisco',
+        role: 'Software Engineer Intern',
+        dates: 'May 2026 - Present',
+      },
+      {
+        organization: 'Redis',
+        role: 'Open Source Contributor',
+        dates: 'July 2026',
+      },
+      {
+        organization: 'University of Wisconsin - Madison',
+        role: 'Machine Learning Researcher',
+        dates: 'September 2025 - Present',
+      },
+      {
+        organization: 'Cisco',
+        role: 'Software Engineer Intern',
+        dates: 'May 2025 - July 2025',
+      },
+      {
+        organization: 'Santa Clara University School of Engineering',
+        role: 'Software Development Researcher',
+        dates: 'May 2024 - July 2024',
+      },
+    ])
+
+    const redis = experiences.find(
+      (experience) => experience.organization === 'Redis',
+    )
+    expect(redis?.links).toEqual([
+      {
+        label: 'PR #15399',
+        href: 'https://github.com/redis/redis/pull/15399',
+      },
+    ])
+    expect(redis?.bullets.join(' ')).toContain('CLUSTER NODES/SLOTS')
+    expect(redis?.bullets.join(' ')).toContain('unit/cluster')
+
+    const santaClara = experiences.find((experience) =>
+      experience.organization.includes('Santa Clara University'),
+    )
+    expect(santaClara?.tools).toEqual([
+      'TypeScript',
+      'Next.js',
+      'PostgreSQL',
+      'Product analytics',
+    ])
+    expect(santaClara?.bullets.join(' ')).toContain('WasteGenie')
+    expect(santaClara?.bullets.join(' ')).toContain('80%')
+    expect(santaClara?.bullets.join(' ')).toContain('public school students')
+  })
+
   it('does not publish the current resume PDF or phone number', () => {
     const serialized = JSON.stringify({
       contact,
