@@ -59,6 +59,30 @@ describe('portfolio shell', () => {
     ).toBeInTheDocument()
   })
 
+  it('uses dark green accents as quiet section and row markers', () => {
+    render(<App />)
+
+    ;[
+      'Background',
+      'Recent roles',
+      'Selected work',
+      'Technical stack',
+      'Get in touch',
+    ].forEach((note) => {
+      expect(screen.getByText(note)).toHaveClass('text-accent')
+    })
+
+    screen.getAllByRole('heading', { level: 2 }).forEach((heading) => {
+      expect(heading.className).toContain('border-accent/40')
+    })
+
+    expect(screen.getByText('01')).toHaveClass('text-accent')
+    expect(screen.getByText(/Refactored Zap logging/i).className).toContain(
+      'border-accent/30',
+    )
+    expect(screen.getByText('Basketball').className).toContain('border-accent/30')
+  })
+
   it('removes generated starter template content', () => {
     render(<App />)
 

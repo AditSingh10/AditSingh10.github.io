@@ -8,7 +8,7 @@
   --color-soft: #565d54;
   --color-muted: #7b8279;
   --color-line: #ddd8cd;
-  --color-accent: #66765b;
+  --color-accent: #31523d;
 }
 
 @layer base {
@@ -33,7 +33,7 @@
     min-height: 100vh;
     margin: 0;
     background:
-      linear-gradient(90deg, rgba(31, 33, 30, 0.035) 1px, transparent 1px) 0 0 /
+      linear-gradient(90deg, rgba(49, 82, 61, 0.035) 1px, transparent 1px) 0 0 /
         72px 72px,
       var(--color-paper);
   }

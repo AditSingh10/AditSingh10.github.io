@@ -35,8 +35,14 @@ function Section({ id, title, note, children }: SectionProps) {
       className="grid scroll-mt-28 grid-cols-1 gap-8 border-t border-line py-16 md:grid-cols-[0.34fr_1.66fr] md:gap-12 md:py-24 lg:grid-cols-[0.24fr_1.76fr]"
     >
       <div>
-        <p className="mb-3 text-xs font-medium uppercase text-muted">{note}</p>
-        <h2 id={headingId} className="text-2xl font-medium text-ink md:text-3xl">
+        <p className="mb-3 flex items-center gap-3 text-xs font-medium uppercase text-accent">
+          <span aria-hidden="true" className="h-px w-6 bg-accent/45" />
+          {note}
+        </p>
+        <h2
+          id={headingId}
+          className="border-l-2 border-accent/40 pl-4 text-2xl font-medium text-ink md:text-3xl"
+        >
           {title}
         </h2>
       </div>
@@ -95,7 +101,7 @@ function PillList({ items }: { items: string[] }) {
       {items.map((item) => (
         <li
           key={item}
-          className="border border-line px-2.5 py-1 text-xs font-medium text-soft"
+          className="border border-line px-2.5 py-1 text-xs font-medium text-soft transition-colors hover:border-accent/40 hover:text-ink"
         >
           {item}
         </li>
@@ -110,7 +116,7 @@ function InterestList({ items }: { items: string[] }) {
       {items.map((item) => (
         <li
           key={item}
-          className="border-l border-line px-4 py-2 text-sm font-medium text-soft transition-colors hover:border-accent hover:text-ink"
+          className="border-l border-accent/30 px-4 py-2 text-sm font-medium text-soft transition-colors hover:border-accent hover:text-ink"
         >
           {item}
         </li>
@@ -133,7 +139,7 @@ function App() {
           <a
             href="#top"
             aria-label="Adit Singh home"
-            className="flex h-9 w-9 items-center justify-center border border-ink text-sm font-medium transition-colors hover:border-accent hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+            className="flex h-9 w-9 items-center justify-center border border-accent/60 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
           >
             AS
           </a>
@@ -221,7 +227,7 @@ function App() {
                 ) : null}
                 <ul className="mt-5 space-y-3 text-sm leading-6 text-soft">
                   {experience.bullets.map((bullet) => (
-                    <li key={bullet} className="border-l border-line pl-4">
+                    <li key={bullet} className="border-l border-accent/30 pl-4">
                       {bullet}
                     </li>
                   ))}
@@ -240,7 +246,7 @@ function App() {
               >
                 <div className="mb-4 flex flex-wrap items-start justify-between gap-4">
                   <div>
-                    <p className="mb-2 text-xs font-medium uppercase text-muted">
+                    <p className="mb-2 text-xs font-medium uppercase text-accent">
                       0{index + 1}
                     </p>
                     <h3 className="text-2xl font-medium text-ink">
@@ -267,7 +273,7 @@ function App() {
                 </div>
                 <ul className="mt-5 space-y-3 text-sm leading-6 text-soft">
                   {project.contributions.map((contribution) => (
-                    <li key={contribution} className="border-l border-line pl-4">
+                    <li key={contribution} className="border-l border-accent/30 pl-4">
                       {contribution}
                     </li>
                   ))}
@@ -280,7 +286,7 @@ function App() {
         <Section id="skills" title="Skills" note="Technical stack">
           <div className="grid gap-x-10 gap-y-8 sm:grid-cols-2">
             {skillGroups.map((group) => (
-              <div key={group.title}>
+              <div key={group.title} className="border-l border-accent/30 pl-4">
                 <h3 className="mb-3 text-sm font-medium text-ink">{group.title}</h3>
                 <p className="text-sm leading-7 text-soft">
                   {group.skills.join(' / ')}
