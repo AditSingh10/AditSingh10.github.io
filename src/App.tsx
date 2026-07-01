@@ -11,11 +11,10 @@ import {
 } from './data/portfolio'
 
 const navItems = [
+  { label: 'About', href: '#about' },
   { label: 'Experience', href: '#experience' },
   { label: 'Projects', href: '#projects' },
   { label: 'Skills', href: '#skills' },
-  { label: 'About', href: '#about' },
-  { label: 'Interests', href: '#interests' },
   { label: 'Contact', href: '#contact' },
 ]
 
@@ -85,9 +84,7 @@ function LinkRow({
       ))}
       {resumeUrl ? (
         <ExternalLink href={resumeUrl}>Resume</ExternalLink>
-      ) : (
-        <span className="text-sm text-muted">Resume available on request</span>
-      )}
+      ) : null}
     </div>
   )
 }
@@ -158,24 +155,19 @@ function App() {
       </header>
 
       <main id="top" className="mx-auto max-w-6xl px-5 sm:px-8">
-        <section className="grid min-h-[520px] grid-cols-1 content-end gap-10 py-16 sm:min-h-[560px] sm:py-20 md:min-h-[620px] md:grid-cols-[0.72fr_1.28fr] md:py-24">
-          <div className="hidden border-l border-line md:block" aria-hidden="true" />
+        <section className="grid min-h-[520px] grid-cols-1 content-end gap-9 py-16 sm:min-h-[560px] sm:py-20 md:min-h-[620px] md:grid-cols-[0.62fr_1.38fr] md:items-end md:gap-14 md:py-24">
+          <div className="flex md:justify-end">
+            <img
+              src="/headshot.jpg"
+              alt="Adit Singh headshot"
+              className="h-44 w-44 shrink-0 rounded-full border border-line object-cover grayscale-[12%] sm:h-52 sm:w-52 md:h-64 md:w-64"
+            />
+          </div>
           <div className="max-w-3xl">
-            <div className="flex flex-col gap-7 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <p className="mb-5 text-sm font-medium text-accent">
-                  {hero.role}
-                </p>
-                <h1 className="text-5xl font-medium leading-[1.05] text-ink sm:text-6xl md:text-7xl">
-                  {hero.name}
-                </h1>
-              </div>
-              <img
-                src="/headshot.jpg"
-                alt="Adit Singh headshot"
-                className="h-32 w-32 shrink-0 border border-line object-cover grayscale-[12%] sm:h-40 sm:w-40 md:h-44 md:w-44"
-              />
-            </div>
+            <p className="mb-5 text-sm font-medium text-accent">{hero.role}</p>
+            <h1 className="text-5xl font-medium leading-[1.05] text-ink sm:text-6xl md:text-7xl">
+              {hero.name}
+            </h1>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-soft sm:text-xl">
               {hero.summary}
             </p>
@@ -187,6 +179,15 @@ function App() {
             </div>
           </div>
         </section>
+
+        <Section id="about" title="About" note="Background">
+          <div className="max-w-3xl">
+            <p className="text-lg leading-8 text-soft">{about}</p>
+            <div className="mt-6">
+              <InterestList items={interests} />
+            </div>
+          </div>
+        </Section>
 
         <Section id="experience" title="Experience" note="Recent roles">
           <div className="space-y-9">
@@ -286,20 +287,6 @@ function App() {
                 </p>
               </div>
             ))}
-          </div>
-        </Section>
-
-        <Section id="about" title="About" note="Background">
-          <p className="max-w-3xl text-lg leading-8 text-soft">{about}</p>
-        </Section>
-
-        <Section id="interests" title="Interests" note="Outside work">
-          <div className="max-w-3xl">
-            <p className="mb-6 text-lg leading-8 text-soft">
-              Away from code, I like staying active, following strange stories,
-              and using AI for creative experiments outside of software work.
-            </p>
-            <InterestList items={interests} />
           </div>
         </Section>
 

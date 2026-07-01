@@ -10,13 +10,16 @@ describe('portfolio shell', () => {
     const navLinks = within(nav).getAllByRole('link').map((link) => link.textContent)
 
     expect(navLinks).toEqual([
+      'About',
       'Experience',
       'Projects',
       'Skills',
-      'About',
-      'Interests',
       'Contact',
     ])
+    expect(within(nav).getByRole('link', { name: 'About' })).toHaveAttribute(
+      'href',
+      '#about',
+    )
     expect(
       within(nav).getByRole('link', { name: 'Experience' }),
     ).toHaveAttribute('href', '#experience')
@@ -27,14 +30,6 @@ describe('portfolio shell', () => {
     expect(within(nav).getByRole('link', { name: 'Skills' })).toHaveAttribute(
       'href',
       '#skills',
-    )
-    expect(within(nav).getByRole('link', { name: 'About' })).toHaveAttribute(
-      'href',
-      '#about',
-    )
-    expect(within(nav).getByRole('link', { name: 'Interests' })).toHaveAttribute(
-      'href',
-      '#interests',
     )
     expect(within(nav).getByRole('link', { name: 'Contact' })).toHaveAttribute(
       'href',
@@ -49,15 +44,12 @@ describe('portfolio shell', () => {
     expect(screen.getByRole('main')).toBeInTheDocument()
     expect(
       screen.getAllByRole('heading', { level: 2 }).map((heading) => heading.textContent),
-    ).toEqual(['Experience', 'Projects', 'Skills', 'About', 'Interests', 'Contact'])
-    expect(
-      screen.getByRole('heading', { level: 2, name: 'Skills' }),
-    ).toBeInTheDocument()
+    ).toEqual(['About', 'Experience', 'Projects', 'Skills', 'Contact'])
     expect(
       screen.getByRole('heading', { level: 2, name: 'About' }),
     ).toBeInTheDocument()
     expect(
-      screen.getByRole('heading', { level: 2, name: 'Interests' }),
+      screen.getByRole('heading', { level: 2, name: 'Skills' }),
     ).toBeInTheDocument()
     expect(
       screen.getByRole('heading', { level: 2, name: 'Contact' }),
@@ -78,10 +70,20 @@ describe('portfolio shell', () => {
       screen.getByRole('heading', { level: 1, name: 'Adit Singh' }),
     ).toBeInTheDocument()
     expect(screen.getByText('Software Engineer')).toBeInTheDocument()
-    expect(screen.getByText('Computer Science, Math at UW Madison.')).toBeInTheDocument()
     expect(
-      screen.getByRole('img', { name: /Adit Singh headshot/i }),
-    ).toHaveAttribute('src', '/headshot.jpg')
+      screen.getByText(
+        'Professional experience in low-latency systems, infrastructure, and applied ML.',
+      ),
+    ).toBeInTheDocument()
+    expect(screen.getByText('Computer Science, Math at UW Madison.')).toBeInTheDocument()
+    const headshot = screen.getByRole('img', { name: /Adit Singh headshot/i })
+    expect(headshot).toHaveAttribute('src', '/headshot.jpg')
+    expect(headshot).toHaveClass('rounded-full')
+    expect(headshot).toHaveClass('md:h-64')
+    const name = screen.getByRole('heading', { level: 1, name: 'Adit Singh' })
+    expect(
+      headshot.compareDocumentPosition(name) & Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy()
     screen.getAllByRole('link', { name: /email/i }).forEach((link) => {
       expect(link).toHaveAttribute('href', 'mailto:singh.adit6@gmail.com')
     })
@@ -94,7 +96,7 @@ describe('portfolio shell', () => {
     screen.getAllByRole('link', { name: 'GitHub' }).forEach((link) => {
       expect(link).toHaveAttribute('href', 'https://github.com/AditSingh10')
     })
-    expect(screen.getAllByText(/resume available on request/i)).not.toHaveLength(0)
+    expect(screen.queryByText(/resume available on request/i)).not.toBeInTheDocument()
     expect(screen.queryByRole('link', { name: /resume/i })).not.toBeInTheDocument()
   })
 
@@ -153,10 +155,16 @@ describe('portfolio shell', () => {
     ).toBeInTheDocument()
   })
 
-  it('renders personal interests without turning them into project content', () => {
+  it('renders personal interests inside the combined about section', () => {
     render(<App />)
 
-    const interestsSection = screen.getByRole('region', { name: 'Interests' })
+    const aboutSection = screen.getByRole('region', { name: 'About' })
+
+    expect(
+      within(aboutSection).getByText(
+        'I am a Computer Science and Math student at UW Madison. My work has mostly been in backend systems, real-time data pipelines, and ML infrastructure. Away from code, I like to do some of the following:',
+      ),
+    ).toBeInTheDocument()
 
     ;[
       'Basketball',
@@ -165,12 +173,15 @@ describe('portfolio shell', () => {
       'Horror movies',
       'Robotics',
       'Animals',
-      'The environment',
-      'Space',
-      'Creative AI outside coding',
+      'The Environment',
+      'Space and Nature',
       'Volunteering',
     ].forEach((interest) => {
-      expect(within(interestsSection).getByText(interest)).toBeInTheDocument()
+      expect(within(aboutSection).getByText(interest)).toBeInTheDocument()
     })
+    expect(screen.queryByRole('region', { name: 'Interests' })).not.toBeInTheDocument()
+    expect(
+      screen.queryByText(['Creative AI', 'outside coding'].join(' ')),
+    ).not.toBeInTheDocument()
   })
 })

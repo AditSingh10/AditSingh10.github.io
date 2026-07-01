@@ -44,7 +44,7 @@ export const hero: Hero = {
   name: 'Adit Singh',
   role: 'Software Engineer',
   summary:
-    'I build backend systems, real-time data infrastructure, and applied ML tools where latency and correctness matter.',
+    'Professional experience in low-latency systems, infrastructure, and applied ML.',
   education: 'Computer Science, Math at UW Madison.',
 }
 
@@ -240,11 +240,10 @@ export const interests = [
   'Horror movies',
   'Robotics',
   'Animals',
-  'The environment',
-  'Space',
-  'Creative AI outside coding',
+  'The Environment',
+  'Space and Nature',
   'Volunteering',
 ]
 
 export const about =
-  'I am a Computer Science and Math student at UW Madison. My work has mostly been in backend systems, real-time data pipelines, and ML infrastructure: Go services at Cisco, quantum readout research, and projects that connect model inference to practical dashboards. I like work where correctness, latency, and clear interfaces matter.'
+  'I am a Computer Science and Math student at UW Madison. My work has mostly been in backend systems, real-time data pipelines, and ML infrastructure. Away from code, I like to do some of the following:'

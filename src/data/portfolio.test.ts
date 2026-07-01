@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import {
+  about,
   contact,
   experiences,
   hero,
@@ -11,6 +12,9 @@ import {
 describe('portfolio data', () => {
   it('uses current public-facing identity and education copy', () => {
     expect(hero.role).toBe('Software Engineer')
+    expect(hero.summary).toBe(
+      'Professional experience in low-latency systems, infrastructure, and applied ML.',
+    )
     expect(hero.education).toBe('Computer Science, Math at UW Madison.')
     expect(contact.email).toBe('singh.adit6@gmail.com')
   })
@@ -124,6 +128,9 @@ describe('portfolio data', () => {
   })
 
   it('keeps personal interests explicit and understated', () => {
+    expect(about).toBe(
+      'I am a Computer Science and Math student at UW Madison. My work has mostly been in backend systems, real-time data pipelines, and ML infrastructure. Away from code, I like to do some of the following:',
+    )
     expect(interests).toEqual([
       'Basketball',
       'Pickleball',
@@ -131,9 +138,8 @@ describe('portfolio data', () => {
       'Horror movies',
       'Robotics',
       'Animals',
-      'The environment',
-      'Space',
-      'Creative AI outside coding',
+      'The Environment',
+      'Space and Nature',
       'Volunteering',
     ])
   })
