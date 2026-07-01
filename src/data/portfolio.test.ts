@@ -3,11 +3,18 @@ import {
   contact,
   experiences,
   hero,
+  interests,
   projects,
   skillGroups,
 } from './portfolio'
 
 describe('portfolio data', () => {
+  it('uses current public-facing identity and education copy', () => {
+    expect(hero.role).toBe('Software Engineer')
+    expect(hero.education).toBe('Computer Science, Math at UW Madison.')
+    expect(contact.email).toBe('singh.adit6@gmail.com')
+  })
+
   it('keeps project order and public links explicit', () => {
     expect(projects.map((project) => project.title)).toEqual([
       'AlphaStream',
@@ -37,6 +44,7 @@ describe('portfolio data', () => {
       contact,
       experiences,
       hero,
+      interests,
       projects,
       skillGroups,
     })
@@ -52,5 +60,20 @@ describe('portfolio data', () => {
     privateFragments.forEach((fragment) => {
       expect(serialized).not.toContain(fragment)
     })
+  })
+
+  it('keeps personal interests explicit and understated', () => {
+    expect(interests).toEqual([
+      'Basketball',
+      'Pickleball',
+      'Gaming',
+      'Horror movies',
+      'Robotics',
+      'Animals',
+      'The environment',
+      'Space',
+      'Creative AI outside coding',
+      'Volunteering',
+    ])
   })
 })

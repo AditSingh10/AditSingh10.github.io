@@ -7,14 +7,23 @@ describe('portfolio shell', () => {
     render(<App />)
 
     const nav = screen.getByRole('navigation', { name: /primary/i })
+    const navLinks = within(nav).getAllByRole('link').map((link) => link.textContent)
 
+    expect(navLinks).toEqual([
+      'Experience',
+      'Projects',
+      'Skills',
+      'About',
+      'Interests',
+      'Contact',
+    ])
+    expect(
+      within(nav).getByRole('link', { name: 'Experience' }),
+    ).toHaveAttribute('href', '#experience')
     expect(within(nav).getByRole('link', { name: 'Projects' })).toHaveAttribute(
       'href',
       '#projects',
     )
-    expect(
-      within(nav).getByRole('link', { name: 'Experience' }),
-    ).toHaveAttribute('href', '#experience')
     expect(within(nav).getByRole('link', { name: 'Skills' })).toHaveAttribute(
       'href',
       '#skills',
@@ -22,6 +31,10 @@ describe('portfolio shell', () => {
     expect(within(nav).getByRole('link', { name: 'About' })).toHaveAttribute(
       'href',
       '#about',
+    )
+    expect(within(nav).getByRole('link', { name: 'Interests' })).toHaveAttribute(
+      'href',
+      '#interests',
     )
     expect(within(nav).getByRole('link', { name: 'Contact' })).toHaveAttribute(
       'href',
@@ -35,16 +48,16 @@ describe('portfolio shell', () => {
     expect(screen.getByRole('banner')).toBeInTheDocument()
     expect(screen.getByRole('main')).toBeInTheDocument()
     expect(
-      screen.getByRole('heading', { level: 2, name: 'Projects' }),
-    ).toBeInTheDocument()
-    expect(
-      screen.getByRole('heading', { level: 2, name: 'Experience' }),
-    ).toBeInTheDocument()
+      screen.getAllByRole('heading', { level: 2 }).map((heading) => heading.textContent),
+    ).toEqual(['Experience', 'Projects', 'Skills', 'About', 'Interests', 'Contact'])
     expect(
       screen.getByRole('heading', { level: 2, name: 'Skills' }),
     ).toBeInTheDocument()
     expect(
       screen.getByRole('heading', { level: 2, name: 'About' }),
+    ).toBeInTheDocument()
+    expect(
+      screen.getByRole('heading', { level: 2, name: 'Interests' }),
     ).toBeInTheDocument()
     expect(
       screen.getByRole('heading', { level: 2, name: 'Contact' }),
@@ -64,9 +77,13 @@ describe('portfolio shell', () => {
     expect(
       screen.getByRole('heading', { level: 1, name: 'Adit Singh' }),
     ).toBeInTheDocument()
-    expect(screen.getAllByText(/UW-Madison/i).length).toBeGreaterThan(0)
+    expect(screen.getByText('Software Engineer')).toBeInTheDocument()
+    expect(screen.getByText('Computer Science, Math at UW Madison.')).toBeInTheDocument()
+    expect(
+      screen.getByRole('img', { name: /Adit Singh headshot/i }),
+    ).toHaveAttribute('src', '/headshot.jpg')
     screen.getAllByRole('link', { name: /email/i }).forEach((link) => {
-      expect(link).toHaveAttribute('href', 'mailto:aditksingh@gmail.com')
+      expect(link).toHaveAttribute('href', 'mailto:singh.adit6@gmail.com')
     })
     screen.getAllByRole('link', { name: /linkedin/i }).forEach((link) => {
       expect(link).toHaveAttribute(
@@ -84,9 +101,9 @@ describe('portfolio shell', () => {
   it('renders strongest projects first with accurate links', () => {
     render(<App />)
 
-    const projectHeadings = screen
+    const projectsSection = screen.getByRole('region', { name: 'Projects' })
+    const projectHeadings = within(projectsSection)
       .getAllByRole('heading', { level: 3 })
-      .slice(0, 4)
       .map((heading) => heading.textContent)
 
     expect(projectHeadings).toEqual([
@@ -106,5 +123,26 @@ describe('portfolio shell', () => {
       'href',
       'https://github.com/AditSingh10/Blockchain-Transaction-Risk-Scorer',
     )
+  })
+
+  it('renders personal interests without turning them into project content', () => {
+    render(<App />)
+
+    const interestsSection = screen.getByRole('region', { name: 'Interests' })
+
+    ;[
+      'Basketball',
+      'Pickleball',
+      'Gaming',
+      'Horror movies',
+      'Robotics',
+      'Animals',
+      'The environment',
+      'Space',
+      'Creative AI outside coding',
+      'Volunteering',
+    ].forEach((interest) => {
+      expect(within(interestsSection).getByText(interest)).toBeInTheDocument()
+    })
   })
 })

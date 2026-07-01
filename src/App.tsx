@@ -4,16 +4,18 @@ import {
   contact,
   experiences,
   hero,
+  interests,
   projects,
   skillGroups,
   type Link,
 } from './data/portfolio'
 
 const navItems = [
-  { label: 'Projects', href: '#projects' },
   { label: 'Experience', href: '#experience' },
+  { label: 'Projects', href: '#projects' },
   { label: 'Skills', href: '#skills' },
   { label: 'About', href: '#about' },
+  { label: 'Interests', href: '#interests' },
   { label: 'Contact', href: '#contact' },
 ]
 
@@ -105,6 +107,21 @@ function PillList({ items }: { items: string[] }) {
   )
 }
 
+function InterestList({ items }: { items: string[] }) {
+  return (
+    <ul className="grid gap-3 sm:grid-cols-2" aria-label="Personal interests">
+      {items.map((item) => (
+        <li
+          key={item}
+          className="border-l border-line px-4 py-2 text-sm font-medium text-soft transition-colors hover:border-accent hover:text-ink"
+        >
+          {item}
+        </li>
+      ))}
+    </ul>
+  )
+}
+
 function App() {
   const contactLinks: Link[] = [
     { label: 'Email', href: `mailto:${contact.email}` },
@@ -125,7 +142,7 @@ function App() {
           </a>
           <nav
             aria-label="Primary navigation"
-            className="flex w-full flex-wrap gap-x-4 gap-y-2 text-sm text-muted sm:w-auto sm:justify-end sm:gap-x-5"
+            className="flex w-full max-w-full flex-wrap gap-x-3 gap-y-2 text-[13px] text-muted sm:w-auto sm:justify-end sm:gap-x-5 sm:text-sm"
           >
             {navItems.map((item) => (
               <a
@@ -144,10 +161,21 @@ function App() {
         <section className="grid min-h-[520px] grid-cols-1 content-end gap-10 py-16 sm:min-h-[560px] sm:py-20 md:min-h-[620px] md:grid-cols-[0.72fr_1.28fr] md:py-24">
           <div className="hidden border-l border-line md:block" aria-hidden="true" />
           <div className="max-w-3xl">
-            <p className="mb-5 text-sm font-medium text-accent">{hero.role}</p>
-            <h1 className="text-5xl font-medium leading-[1.05] text-ink sm:text-6xl md:text-7xl">
-              {hero.name}
-            </h1>
+            <div className="flex flex-col gap-7 sm:flex-row sm:items-end sm:justify-between">
+              <div>
+                <p className="mb-5 text-sm font-medium text-accent">
+                  {hero.role}
+                </p>
+                <h1 className="text-5xl font-medium leading-[1.05] text-ink sm:text-6xl md:text-7xl">
+                  {hero.name}
+                </h1>
+              </div>
+              <img
+                src="/headshot.jpg"
+                alt="Adit Singh headshot"
+                className="h-32 w-32 shrink-0 border border-line object-cover grayscale-[12%] sm:h-40 sm:w-40 md:h-44 md:w-44"
+              />
+            </div>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-soft sm:text-xl">
               {hero.summary}
             </p>
@@ -160,10 +188,46 @@ function App() {
           </div>
         </section>
 
+        <Section id="experience" title="Experience" note="Recent roles">
+          <div className="space-y-9">
+            {experiences.map((experience) => (
+              <article
+                key={`${experience.organization}-${experience.dates}`}
+                className="border-t border-line pt-7 first:border-t-0 first:pt-0"
+              >
+                <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                  <div>
+                    <h3 className="text-xl font-medium text-ink">
+                      {experience.role}
+                    </h3>
+                    <p className="mt-1 text-sm text-muted">
+                      {experience.organization} / {experience.location}
+                    </p>
+                  </div>
+                  <p className="text-sm text-muted">{experience.dates}</p>
+                </div>
+                <div className="mt-4">
+                  <PillList items={experience.tools} />
+                </div>
+                <ul className="mt-5 space-y-3 text-sm leading-6 text-soft">
+                  {experience.bullets.map((bullet) => (
+                    <li key={bullet} className="border-l border-line pl-4">
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </Section>
+
         <Section id="projects" title="Projects" note="Selected work">
           <div className="space-y-10">
             {projects.map((project, index) => (
-              <article key={project.title} className="border-t border-line pt-8 first:border-t-0 first:pt-0">
+              <article
+                key={project.title}
+                className="border-t border-line pt-8 first:border-t-0 first:pt-0"
+              >
                 <div className="mb-4 flex flex-wrap items-start justify-between gap-4">
                   <div>
                     <p className="mb-2 text-xs font-medium uppercase text-muted">
@@ -203,36 +267,6 @@ function App() {
           </div>
         </Section>
 
-        <Section id="experience" title="Experience" note="Recent roles">
-          <div className="space-y-9">
-            {experiences.map((experience) => (
-              <article key={`${experience.organization}-${experience.dates}`} className="border-t border-line pt-7 first:border-t-0 first:pt-0">
-                <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-                  <div>
-                    <h3 className="text-xl font-medium text-ink">
-                      {experience.role}
-                    </h3>
-                    <p className="mt-1 text-sm text-muted">
-                      {experience.organization} / {experience.location}
-                    </p>
-                  </div>
-                  <p className="text-sm text-muted">{experience.dates}</p>
-                </div>
-                <div className="mt-4">
-                  <PillList items={experience.tools} />
-                </div>
-                <ul className="mt-5 space-y-3 text-sm leading-6 text-soft">
-                  {experience.bullets.map((bullet) => (
-                    <li key={bullet} className="border-l border-line pl-4">
-                      {bullet}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            ))}
-          </div>
-        </Section>
-
         <Section id="skills" title="Skills" note="Technical stack">
           <div className="grid gap-x-10 gap-y-8 sm:grid-cols-2">
             {skillGroups.map((group) => (
@@ -250,11 +284,21 @@ function App() {
           <p className="max-w-3xl text-lg leading-8 text-soft">{about}</p>
         </Section>
 
+        <Section id="interests" title="Interests" note="Outside work">
+          <div className="max-w-3xl">
+            <p className="mb-6 text-lg leading-8 text-soft">
+              Away from code, I like staying active, following strange stories,
+              and using AI for creative experiments outside of software work.
+            </p>
+            <InterestList items={interests} />
+          </div>
+        </Section>
+
         <Section id="contact" title="Contact" note="Get in touch">
           <div className="max-w-3xl">
             <p className="text-lg leading-8 text-soft">
-              I am looking for software engineering internship roles where I can
-              work on systems, backend infrastructure, or applied ML products.
+              Reach out about software engineering opportunities, systems work,
+              or applied ML projects.
             </p>
             <div className="mt-7">
               <LinkRow links={contactLinks} resumeUrl={contact.resumeUrl} />

@@ -41,15 +41,14 @@ export type Contact = {
 
 export const hero: Hero = {
   name: 'Adit Singh',
-  role: 'Software engineering intern candidate',
+  role: 'Software Engineer',
   summary:
     'I build backend systems, real-time data infrastructure, and applied ML tools where latency and correctness matter.',
-  education:
-    'Computer Science Honors and Mathematics at UW-Madison. Expected May 2028. 3.97 GPA.',
+  education: 'Computer Science, Math at UW Madison.',
 }
 
 export const contact: Contact = {
-  email: 'aditksingh@gmail.com',
+  email: 'singh.adit6@gmail.com',
   linkedin: 'https://www.linkedin.com/in/adit-singh-b5188b273/',
   github: 'https://github.com/AditSingh10',
   resumeUrl: null,
@@ -205,5 +204,18 @@ export const skillGroups: SkillGroup[] = [
   },
 ]
 
+export const interests = [
+  'Basketball',
+  'Pickleball',
+  'Gaming',
+  'Horror movies',
+  'Robotics',
+  'Animals',
+  'The environment',
+  'Space',
+  'Creative AI outside coding',
+  'Volunteering',
+]
+
 export const about =
-  'I am a Computer Science Honors and Mathematics student at UW-Madison, graduating in May 2028. My work has mostly been in backend systems, real-time data pipelines, and ML infrastructure: Go services at Cisco, quantum readout research, and projects that connect model inference to practical dashboards. I like work where correctness, latency, and clear interfaces matter.'
+  'I am a Computer Science and Math student at UW Madison. My work has mostly been in backend systems, real-time data pipelines, and ML infrastructure: Go services at Cisco, quantum readout research, and projects that connect model inference to practical dashboards. I like work where correctness, latency, and clear interfaces matter.'
