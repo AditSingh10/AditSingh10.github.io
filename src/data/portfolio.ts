@@ -95,7 +95,7 @@ export const projects: Project[] = [
     ],
     contributions: [
       'Built a horizontally scalable GNN inference pipeline on Kafka and streamed risk scores to a React dashboard with FastAPI and WebSockets.',
-      'Used 2-hop subgraph inference over the Elliptic dataset, with the project reporting sub-270ms latency and 0.94 weighted F1.',
+      'Used 2-hop subgraph inference over the Elliptic dataset to achieve sub-270ms latency and 0.94 weighted F1.',
     ],
     links: [
       {
@@ -122,7 +122,7 @@ export const projects: Project[] = [
     stack: ['Python', 'React/TypeScript', 'FastAPI', 'Machine Learning'],
     contributions: [
       'Led a 6-person engineering team over 12 weeks while coordinating product direction with a Nike PM.',
-      'Built recommendation and fit analytics workflows; the resume reports a 25% return-rate reduction in trials.',
+      'Built recommendation and fit analytics workflows that reduced trial return rates by 25%.',
     ],
     links: [],
   },
@@ -149,7 +149,6 @@ export const experiences: Experience[] = [
     tools: ['Tcl', 'Redis Cluster', 'Test migration'],
     bullets: [
       'Submitted redis/redis PR #15399 migrating CLUSTER NODES/SLOTS topology coverage from the legacy cluster suite into the unit/cluster framework.',
-      'Replaced cluster_create_with_continuous_slots setup with start_cluster while preserving continuous and discontinuous slot-range assertions for CLUSTER NODES and CLUSTER SLOTS.',
     ],
     links: [
       {
@@ -240,7 +239,6 @@ export const interests = [
   'Horror movies',
   'Robotics',
   'Animals',
-  'The Environment',
   'Space and Nature',
   'Volunteering',
 ]

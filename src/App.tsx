@@ -32,7 +32,7 @@ function Section({ id, title, note, children }: SectionProps) {
     <section
       id={id}
       aria-labelledby={headingId}
-      className="grid scroll-mt-28 grid-cols-1 gap-8 border-t border-line py-16 md:grid-cols-[0.55fr_1.45fr] md:gap-14 md:py-24"
+      className="grid scroll-mt-28 grid-cols-1 gap-8 border-t border-line py-16 md:grid-cols-[0.34fr_1.66fr] md:gap-12 md:py-24 lg:grid-cols-[0.24fr_1.76fr]"
     >
       <div>
         <p className="mb-3 text-xs font-medium uppercase text-muted">{note}</p>
@@ -129,7 +129,7 @@ function App() {
   return (
     <div className="min-h-screen bg-paper text-ink">
       <header className="sticky top-0 z-20 border-b border-line bg-paper/95 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-6xl flex-col items-start gap-3 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-5 sm:px-8">
+        <div className="mx-auto flex max-w-[84rem] flex-col items-start gap-3 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-5 sm:px-8">
           <a
             href="#top"
             aria-label="Adit Singh home"
@@ -154,7 +154,7 @@ function App() {
         </div>
       </header>
 
-      <main id="top" className="mx-auto max-w-6xl px-5 sm:px-8">
+      <main id="top" className="mx-auto max-w-[84rem] px-5 sm:px-8">
         <section className="grid min-h-[520px] grid-cols-1 content-end gap-9 py-16 sm:min-h-[560px] sm:py-20 md:min-h-[620px] md:grid-cols-[0.62fr_1.38fr] md:items-end md:gap-14 md:py-24">
           <div className="flex md:justify-end">
             <img

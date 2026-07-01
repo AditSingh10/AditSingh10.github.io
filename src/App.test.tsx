@@ -41,7 +41,10 @@ describe('portfolio shell', () => {
     render(<App />)
 
     expect(screen.getByRole('banner')).toBeInTheDocument()
-    expect(screen.getByRole('main')).toBeInTheDocument()
+    expect(screen.getByRole('main').className).toContain('max-w-[84rem]')
+    expect(screen.getByRole('region', { name: 'Experience' }).className).toContain(
+      'lg:grid-cols-[0.24fr_1.76fr]',
+    )
     expect(
       screen.getAllByRole('heading', { level: 2 }).map((heading) => heading.textContent),
     ).toEqual(['About', 'Experience', 'Projects', 'Skills', 'Contact'])
@@ -138,6 +141,9 @@ describe('portfolio shell', () => {
     expect(
       within(experienceSection).getByRole('link', { name: /PR #15399/i }),
     ).toHaveAttribute('href', 'https://github.com/redis/redis/pull/15399')
+    expect(
+      within(experienceSection).getAllByText(/CLUSTER NODES\/SLOTS/i),
+    ).toHaveLength(1)
     expect(within(experienceSection).getByText(/CLUSTER NODES\/SLOTS/i)).toBeInTheDocument()
 
     expect(
@@ -173,12 +179,12 @@ describe('portfolio shell', () => {
       'Horror movies',
       'Robotics',
       'Animals',
-      'The Environment',
       'Space and Nature',
       'Volunteering',
     ].forEach((interest) => {
       expect(within(aboutSection).getByText(interest)).toBeInTheDocument()
     })
+    expect(within(aboutSection).queryByText('The Environment')).not.toBeInTheDocument()
     expect(screen.queryByRole('region', { name: 'Interests' })).not.toBeInTheDocument()
     expect(
       screen.queryByText(['Creative AI', 'outside coding'].join(' ')),

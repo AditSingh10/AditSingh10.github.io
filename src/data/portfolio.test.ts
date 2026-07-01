@@ -43,6 +43,18 @@ describe('portfolio data', () => {
     expect(projects[3].links).toEqual([])
   })
 
+  it('uses direct project impact language without source-note phrasing', () => {
+    const serializedProjects = JSON.stringify(projects)
+
+    expect(serializedProjects).not.toMatch(/resume reports|project reporting|project report/i)
+    expect(serializedProjects).toContain(
+      'Used 2-hop subgraph inference over the Elliptic dataset to achieve sub-270ms latency and 0.94 weighted F1.',
+    )
+    expect(serializedProjects).toContain(
+      'Built recommendation and fit analytics workflows that reduced trial return rates by 25%.',
+    )
+  })
+
   it('includes verified research and open-source experience entries', () => {
     expect(
       experiences.map((experience) => ({
@@ -87,6 +99,7 @@ describe('portfolio data', () => {
         href: 'https://github.com/redis/redis/pull/15399',
       },
     ])
+    expect(redis?.bullets).toHaveLength(1)
     expect(redis?.bullets.join(' ')).toContain('CLUSTER NODES/SLOTS')
     expect(redis?.bullets.join(' ')).toContain('unit/cluster')
 
@@ -138,7 +151,6 @@ describe('portfolio data', () => {
       'Horror movies',
       'Robotics',
       'Animals',
-      'The Environment',
       'Space and Nature',
       'Volunteering',
     ])
