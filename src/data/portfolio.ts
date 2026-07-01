@@ -137,8 +137,7 @@ export const experiences: Experience[] = [
     tools: ['Go', 'Zap', 'Cisco Intersight'],
     bullets: [
       'Developed a Go testing framework for Cisco Intersight notification alerts, enabling automated validation for email notifications serving 860+ enterprise customers.',
-      'Refactored production logging to structured Zap fields, reducing log volume by 68% and preventing concurrent goroutine resource leaks.',
-      'Reduced peak backend service memory usage by 20%.',
+      'Refactored Zap logging to cut log volume 68%, prevent goroutine leaks, and reduce peak memory 20%.',
     ],
   },
   {
@@ -195,8 +194,7 @@ export const experiences: Experience[] = [
     dates: 'May 2024 - July 2024',
     tools: ['TypeScript', 'Next.js', 'PostgreSQL', 'Product analytics'],
     bullets: [
-      'Built a TypeScript, Next.js, and PostgreSQL analytics platform for WasteGenie, an environmental education site used in clinical trials with public school students.',
-      'Analyzed engagement data across activities, posts, and user workflows to guide product changes that helped improve trial user engagement to 80%.',
+      'Built a TypeScript, Next.js, and PostgreSQL analytics platform for WasteGenie, using student engagement data to improve clinical trial user engagement to 80%.',
     ],
   },
 ]

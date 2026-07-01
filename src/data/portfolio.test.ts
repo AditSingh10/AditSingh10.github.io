@@ -103,6 +103,16 @@ describe('portfolio data', () => {
     expect(redis?.bullets.join(' ')).toContain('CLUSTER NODES/SLOTS')
     expect(redis?.bullets.join(' ')).toContain('unit/cluster')
 
+    const currentCisco = experiences.find(
+      (experience) =>
+        experience.organization === 'Cisco' &&
+        experience.dates === 'May 2026 - Present',
+    )
+    expect(currentCisco?.bullets).toEqual([
+      'Developed a Go testing framework for Cisco Intersight notification alerts, enabling automated validation for email notifications serving 860+ enterprise customers.',
+      'Refactored Zap logging to cut log volume 68%, prevent goroutine leaks, and reduce peak memory 20%.',
+    ])
+
     const santaClara = experiences.find((experience) =>
       experience.organization.includes('Santa Clara University'),
     )
@@ -112,9 +122,9 @@ describe('portfolio data', () => {
       'PostgreSQL',
       'Product analytics',
     ])
-    expect(santaClara?.bullets.join(' ')).toContain('WasteGenie')
-    expect(santaClara?.bullets.join(' ')).toContain('80%')
-    expect(santaClara?.bullets.join(' ')).toContain('public school students')
+    expect(santaClara?.bullets).toEqual([
+      'Built a TypeScript, Next.js, and PostgreSQL analytics platform for WasteGenie, using student engagement data to improve clinical trial user engagement to 80%.',
+    ])
   })
 
   it('does not publish the current resume PDF or phone number', () => {

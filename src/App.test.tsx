@@ -157,8 +157,11 @@ describe('portfolio shell', () => {
     expect(within(experienceSection).getByText(/WasteGenie/i)).toBeInTheDocument()
     expect(within(experienceSection).getByText(/80%/i)).toBeInTheDocument()
     expect(
-      within(experienceSection).getByText(/public school students/i),
+      within(experienceSection).getByText(/student engagement data/i),
     ).toBeInTheDocument()
+    expect(
+      within(experienceSection).getAllByText(/clinical trial user engagement/i),
+    ).toHaveLength(1)
   })
 
   it('renders personal interests inside the combined about section', () => {
