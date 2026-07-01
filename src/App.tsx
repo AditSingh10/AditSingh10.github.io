@@ -105,7 +105,7 @@ function App() {
   return (
     <div className="min-h-screen bg-paper text-ink">
       <header className="sticky top-0 z-20 border-b border-line bg-paper/95 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-5 px-5 py-4 sm:px-8">
+        <div className="mx-auto flex max-w-6xl flex-col items-start gap-3 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-5 sm:px-8">
           <a
             href="#top"
             aria-label="Adit Singh home"
@@ -115,7 +115,7 @@ function App() {
           </a>
           <nav
             aria-label="Primary navigation"
-            className="flex flex-wrap justify-end gap-x-5 gap-y-2 text-sm text-muted"
+            className="flex w-full flex-wrap gap-x-4 gap-y-2 text-sm text-muted sm:w-auto sm:justify-end sm:gap-x-5"
           >
             {navItems.map((item) => (
               <a
@@ -131,14 +131,14 @@ function App() {
       </header>
 
       <main id="top" className="mx-auto max-w-6xl px-5 sm:px-8">
-        <section className="grid min-h-[68svh] grid-cols-1 content-end gap-10 py-20 md:grid-cols-[0.72fr_1.28fr] md:py-28">
+        <section className="grid min-h-[520px] grid-cols-1 content-end gap-10 py-16 sm:min-h-[560px] sm:py-20 md:min-h-[620px] md:grid-cols-[0.72fr_1.28fr] md:py-24">
           <div className="hidden border-l border-line md:block" aria-hidden="true" />
           <div className="max-w-3xl">
             <p className="mb-5 text-sm font-medium text-accent">{hero.role}</p>
             <h1 className="text-5xl font-medium leading-[1.05] text-ink sm:text-6xl md:text-7xl">
               {hero.name}
             </h1>
-            <p className="mt-7 max-w-2xl text-xl leading-8 text-soft">
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-soft sm:text-xl">
               {hero.summary}
             </p>
             <p className="mt-5 max-w-2xl text-base leading-7 text-muted">
