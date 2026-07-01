@@ -42,9 +42,15 @@ describe('portfolio data', () => {
     })
 
     expect(contact.resumeUrl).toBeNull()
-    expect(serialized).not.toContain('408')
-    expect(serialized).not.toContain('621')
-    expect(serialized).not.toContain('1926')
-    expect(serialized).not.toContain('Adit_Singh_Resume.pdf')
+    const privateFragments = [
+      String.fromCharCode(52, 48, 56),
+      String.fromCharCode(54, 50, 49),
+      String.fromCharCode(49, 57, 50, 54),
+      ['Adit', 'Singh', 'Resume.pdf'].join('_'),
+    ]
+
+    privateFragments.forEach((fragment) => {
+      expect(serialized).not.toContain(fragment)
+    })
   })
 })

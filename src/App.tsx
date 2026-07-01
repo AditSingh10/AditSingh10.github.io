@@ -67,7 +67,13 @@ function ExternalLink({
   )
 }
 
-function LinkRow({ links }: { links: Link[] }) {
+function LinkRow({
+  links,
+  resumeUrl,
+}: {
+  links: Link[]
+  resumeUrl: string | null
+}) {
   return (
     <div className="flex flex-wrap gap-4">
       {links.map((link) => (
@@ -75,7 +81,11 @@ function LinkRow({ links }: { links: Link[] }) {
           {link.label}
         </ExternalLink>
       ))}
-      <span className="text-sm text-muted">Resume available on request</span>
+      {resumeUrl ? (
+        <ExternalLink href={resumeUrl}>Resume</ExternalLink>
+      ) : (
+        <span className="text-sm text-muted">Resume available on request</span>
+      )}
     </div>
   )
 }
@@ -145,7 +155,7 @@ function App() {
               {hero.education}
             </p>
             <div className="mt-9">
-              <LinkRow links={contactLinks} />
+              <LinkRow links={contactLinks} resumeUrl={contact.resumeUrl} />
             </div>
           </div>
         </section>
@@ -247,7 +257,7 @@ function App() {
               work on systems, backend infrastructure, or applied ML products.
             </p>
             <div className="mt-7">
-              <LinkRow links={contactLinks} />
+              <LinkRow links={contactLinks} resumeUrl={contact.resumeUrl} />
             </div>
           </div>
         </Section>
