@@ -105,8 +105,11 @@ describe('portfolio data', () => {
       },
     ])
     expect(redis?.bullets).toHaveLength(1)
-    expect(redis?.bullets.join(' ')).toContain('CLUSTER NODES/SLOTS')
+    expect(redis?.bullets.join(' ')).toContain(
+      'cluster tests 09, 15, 16, 18, 19, 25, 26, and 29',
+    )
     expect(redis?.bullets.join(' ')).toContain('unit/cluster')
+    expect(redis?.bullets.join(' ')).toContain('review is in progress')
 
     const currentCisco = experiences.find(
       (experience) =>

@@ -152,7 +152,7 @@ export const experiences: Experience[] = [
     dates: 'July 2026',
     tools: ['Tcl', 'Redis Cluster', 'Test migration'],
     bullets: [
-      'Submitted redis/redis PR #15399 migrating CLUSTER NODES/SLOTS topology coverage from the legacy cluster suite into the unit/cluster framework.',
+      'Opened redis/redis PR #15399 migrating cluster tests 09, 15, 16, 18, 19, 25, 26, and 29 into unit/cluster; checks are passing and review is in progress.',
     ],
     links: [
       {

@@ -169,9 +169,14 @@ describe('portfolio shell', () => {
       within(experienceSection).getByRole('link', { name: /PR #15399/i }),
     ).toHaveAttribute('href', 'https://github.com/redis/redis/pull/15399')
     expect(
-      within(experienceSection).getAllByText(/CLUSTER NODES\/SLOTS/i),
-    ).toHaveLength(1)
-    expect(within(experienceSection).getByText(/CLUSTER NODES\/SLOTS/i)).toBeInTheDocument()
+      within(experienceSection).queryAllByText(/CLUSTER NODES\/SLOTS/i),
+    ).toHaveLength(0)
+    expect(
+      within(experienceSection).getByText(
+        /cluster tests 09, 15, 16, 18, 19, 25, 26, and 29/i,
+      ),
+    ).toBeInTheDocument()
+    expect(within(experienceSection).getByText(/review is in progress/i)).toBeInTheDocument()
 
     expect(
       within(experienceSection).getByText('Software Development Researcher'),
