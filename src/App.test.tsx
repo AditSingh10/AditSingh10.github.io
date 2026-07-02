@@ -97,11 +97,11 @@ describe('portfolio shell', () => {
       screen.getByRole('heading', { level: 1, name: 'Adit Singh' }),
     ).toBeInTheDocument()
     expect(screen.getByText('Software Engineer')).toBeInTheDocument()
-    expect(
-      screen.getByText(
-        'Professional experience in low-latency systems, infrastructure, and applied ML.',
-      ),
-    ).toBeInTheDocument()
+    const summary = screen.getByText(
+      'Professional experience in low-latency systems, infrastructure, and applied ML.',
+    )
+    expect(summary).toBeInTheDocument()
+    expect(summary).toHaveClass('max-w-3xl')
     expect(screen.getByText('Computer Science, Math at UW Madison.')).toBeInTheDocument()
     const headshot = screen.getByRole('img', { name: /Adit Singh headshot/i })
     expect(headshot).toHaveAttribute('src', '/headshot.jpg')
@@ -152,6 +152,9 @@ describe('portfolio shell', () => {
       'href',
       'https://github.com/AditSingh10/Blockchain-Transaction-Risk-Scorer',
     )
+    expect(
+      screen.getByRole('link', { name: /Qualcomm Edge AI Hackathon GitHub/i }),
+    ).toHaveAttribute('href', 'https://github.com/pranav-singh1/clearcomms')
   })
 
   it('renders the added research and open-source experiences', () => {
@@ -195,7 +198,7 @@ describe('portfolio shell', () => {
 
     expect(
       within(aboutSection).getByText(
-        'I am a Computer Science and Math student at UW Madison. My work has mostly been in backend systems, real-time data pipelines, and ML infrastructure. Away from code, I am interested in these things:',
+        'I am a Computer Science and Math student at UW Madison. My work has mostly been in backend systems, real-time data pipelines, and ML infrastructure. Some of my interests outside of work include:',
       ),
     ).toBeInTheDocument()
 

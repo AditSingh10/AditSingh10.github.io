@@ -113,7 +113,12 @@ export const projects: Project[] = [
       'Reduced model latency from 1200ms to 170ms with NPU-accelerated ONNX Runtime deployment and quantization.',
       'Demoed to Qualcomm engineers and placed second across 200+ competing teams.',
     ],
-    links: [],
+    links: [
+      {
+        label: 'GitHub',
+        href: 'https://github.com/pranav-singh1/clearcomms',
+      },
+    ],
   },
   {
     title: 'Nike Industry Project',
@@ -242,4 +247,4 @@ export const interests = [
 ]
 
 export const about =
-  'I am a Computer Science and Math student at UW Madison. My work has mostly been in backend systems, real-time data pipelines, and ML infrastructure. Away from code, I am interested in these things:'
+  'I am a Computer Science and Math student at UW Madison. My work has mostly been in backend systems, real-time data pipelines, and ML infrastructure. Some of my interests outside of work include:'

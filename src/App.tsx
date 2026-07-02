@@ -174,7 +174,7 @@ function App() {
             <h1 className="text-5xl font-medium leading-[1.05] text-ink sm:text-6xl md:text-7xl">
               {hero.name}
             </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-soft sm:text-xl">
+            <p className="mt-7 max-w-3xl text-lg leading-8 text-soft sm:text-xl">
               {hero.summary}
             </p>
             <p className="mt-5 max-w-2xl text-base leading-7 text-muted">

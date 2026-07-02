@@ -39,7 +39,12 @@ describe('portfolio data', () => {
         href: 'https://github.com/AditSingh10/Blockchain-Transaction-Risk-Scorer',
       },
     ])
-    expect(projects[2].links).toEqual([])
+    expect(projects[2].links).toEqual([
+      {
+        label: 'GitHub',
+        href: 'https://github.com/pranav-singh1/clearcomms',
+      },
+    ])
     expect(projects[3].links).toEqual([])
   })
 
@@ -152,7 +157,7 @@ describe('portfolio data', () => {
 
   it('keeps personal interests explicit and understated', () => {
     expect(about).toBe(
-      'I am a Computer Science and Math student at UW Madison. My work has mostly been in backend systems, real-time data pipelines, and ML infrastructure. Away from code, I am interested in these things:',
+      'I am a Computer Science and Math student at UW Madison. My work has mostly been in backend systems, real-time data pipelines, and ML infrastructure. Some of my interests outside of work include:',
     )
     expect(interests).toEqual([
       'Basketball',
