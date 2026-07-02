@@ -195,7 +195,7 @@ describe('portfolio shell', () => {
 
     expect(
       within(aboutSection).getByText(
-        'I am a Computer Science and Math student at UW Madison. My work has mostly been in backend systems, real-time data pipelines, and ML infrastructure. Away from code, I like to do some of the following:',
+        'I am a Computer Science and Math student at UW Madison. My work has mostly been in backend systems, real-time data pipelines, and ML infrastructure. Away from code, I am interested in these things:',
       ),
     ).toBeInTheDocument()
 
